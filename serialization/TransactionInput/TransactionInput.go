@@ -31,6 +31,10 @@ func (tx TransactionInput) String() string {
 	return hex.EncodeToString(tx.TransactionId) + "." + strconv.Itoa(tx.Index)
 }
 
+func (tx TransactionInput) MarshalJSON() ([]byte, error) {
+	return []byte(`"` + tx.String() + `"`), nil
+}
+
 // func (tx TransactionInput) Hash() string {
 // 	final := append(tx.TransactionId[:], tx.Index)
 // 	blake_2b, _ := blake2b.New(TRANSACTION_HASH_SIZE, final)
